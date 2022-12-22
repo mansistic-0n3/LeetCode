@@ -1,0 +1,36 @@
+//You are given the head of a singly linked-list. The list can be represented as:
+//L0 → L1 → … → Ln - 1 → Ln
+//Reorder the list to be on the following form:
+//L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
+//You may not modify the values in the list's nodes. Only nodes themselves may be changed.
+
+//JAVA
+
+class Solution {
+    public void reorderList(ListNode head) {
+        ListNode node = head;
+        int count =0;
+        HashMap<Integer,ListNode> re = new HashMap<>();
+        while(node!=null){
+            re.put(count++, node);
+            node=node.next;
+        }
+        
+        int left = 0;
+        int right = count-1;
+        ListNode L = null;
+        ListNode R = null;
+     
+        while(left<right){
+            L=re.get(left);
+            R=re.get(right);
+            ListNode temp = L.next;
+            L.next = R;
+            R.next= temp;
+            left++;
+            right--;
+            
+        }
+       re.get(left).next=null; 
+    }
+}
