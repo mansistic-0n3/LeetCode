@@ -1,0 +1,29 @@
+//Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+
+//Example 1:
+//Input: head = [1,2,2,1]
+//Output: true
+
+//JAVA
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        if(head==null){
+            return false;
+        }
+        
+        List<Integer> item = new ArrayList<>();
+        while(head!=null){
+            item.add(head.val);
+            head=head.next;
+        }
+        
+        int size = item.size();
+        for(int i = 0; i<size; i++){
+            if(item.get(i) != item.get(size-1-i)){
+                return false;
+            }
+        }
+        return true;
+    }
+}
